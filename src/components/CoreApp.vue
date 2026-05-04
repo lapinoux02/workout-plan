@@ -1,105 +1,84 @@
 <template>
   <div class="core-app">
-    <h1>Workout Planner</h1>
-
     <div class="controls">
-      <label>Day:</label>
-      <select v-model="selectedDay">
-        <option v-for="day in days" :key="day" :value="day">
-          {{ day }}
-        </option>
-      </select>
-
-      <label>Period:</label>
-      <select v-model="selectedPeriod">
-        <option v-for="period in periods" :key="period" :value="period">
-          {{ period }}
-        </option>
-      </select>
-
-      <button @click="setToday">Use Today</button>
+      <selector v-model="selectedDay" :options="days"></selector>
+      <selector v-model="selectedPeriod" :options="periods"></selector>
     </div>
 
     <div class="workout">
-      <h2>{{ selectedDay }} - {{ selectedPeriod }}</h2>
-
-      <ul v-if="currentWorkout.length">
-        <li v-for="(exercise, index) in currentWorkout" :key="index">
-          {{ exercise }}
-        </li>
-      </ul>
-
-      <p v-else>No workout planned.</p>
+      <div v-for="(exercise, index) in currentWorkout" :key="index" class="exercise">{{ exercise }}</div>
     </div>
   </div>
 </template>
 
 <script>
+import Selector from './Selector.vue';
+
 const schedule = {
-  Monday: {
-    Morning: ["Pull-ups 4x60%"],
-    WorkMorning: ["Curls 2x12", "Lateral raises 2x15"],
-    Noon: ["Push-ups 2x15"],
-    WorkAfternoon: ["Rowing 2x10"],
-    Evening: ["Dumbbell press 4x8-12", "Push-ups max"]
+  LUN: {
+    Reveil: ['Pull-ups 4x60%'],
+    Matin: ['Curls 2x12', 'Lateral raises 2x15'],
+    Midi: ['Push-ups 2x15'],
+    Aprem: ['Rowing 2x10'],
+    Soir: ['Dumbbell press 4x8-12', 'Push-ups max']
   },
 
-  Tuesday: {
-    Morning: ["Pull-ups 4x60%"],
-    WorkMorning: ["Rowing 2x10"],
-    Noon: ["Rear delt fly 2x15"],
-    WorkAfternoon: ["Curls 2x12"],
-    Evening: ["Rowing heavy 4x8-12", "Pull-ups max"]
+  MAR: {
+    Reveil: ['Pull-ups 4x60%'],
+    Matin: ['Rowing 2x10'],
+    Midi: ['Rear delt fly 2x15'],
+    Aprem: ['Curls 2x12'],
+    Soir: ['Rowing heavy 4x8-12', 'Pull-ups max']
   },
 
-  Wednesday: {
-    Morning: ["Light pull-ups 3x50%"],
-    WorkMorning: ["Mobility"],
-    Noon: ["Plank"],
-    WorkAfternoon: ["Mobility"],
-    Evening: ["Recovery"]
+  MER: {
+    Reveil: ['Light pull-ups 3x50%'],
+    Matin: ['Mobility'],
+    Midi: ['Plank'],
+    Aprem: ['Mobility'],
+    Soir: ['Recovery']
   },
 
-  Thursday: {
-    Morning: ["Pull-ups 4x60%"],
-    WorkMorning: ["Curls 2x12", "Lateral raises 2x15"],
-    Noon: ["Push-ups 2x15"],
-    WorkAfternoon: ["Rowing 2x10"],
-    Evening: ["Dumbbell press 4x8-12", "Push-ups max"]
+  JEU: {
+    Reveil: ['Pull-ups 4x60%'],
+    Matin: ['Curls 2x12', 'Lateral raises 2x15'],
+    Midi: ['Push-ups 2x15'],
+    Aprem: ['Rowing 2x10'],
+    Soir: ['Dumbbell press 4x8-12', 'Push-ups max']
   },
 
-  Friday: {
-    Morning: ["Pull-ups 4x60%"],
-    WorkMorning: ["Rowing 2x10"],
-    Noon: ["Rear delt fly 2x15"],
-    WorkAfternoon: ["Curls 2x12"],
-    Evening: ["Rowing heavy 4x8-12", "Pull-ups max"]
+  VEN: {
+    Reveil: ['Pull-ups 4x60%'],
+    Matin: ['Rowing 2x10'],
+    Midi: ['Rear delt fly 2x15'],
+    Aprem: ['Curls 2x12'],
+    Soir: ['Rowing heavy 4x8-12', 'Pull-ups max']
   },
 
-  Saturday: {
-    Morning: ["Light pull-ups"],
-    WorkMorning: ["Light"],
-    Noon: ["Light"],
-    WorkAfternoon: ["Light"],
-    Evening: ["Optional"]
+  SAM: {
+    Reveil: ['Light pull-ups'],
+    Matin: ['Light'],
+    Midi: ['Light'],
+    Aprem: ['Light'],
+    Soir: ['Optional']
   },
 
-  Sunday: {
-    Morning: ["Rest"],
-    WorkMorning: ["Rest"],
-    Noon: ["Rest"],
-    WorkAfternoon: ["Rest"],
-    Evening: ["Rest"]
+  DIM: {
+    Reveil: ['Rest'],
+    Matin: ['Rest'],
+    Midi: ['Rest'],
+    Aprem: ['Rest'],
+    Soir: ['Rest']
   }
 }
 
 export default {
   data() {
     return {
-      days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-      periods: ["Morning", "WorkMorning", "Noon", "WorkAfternoon", "Evening"],
-      selectedDay: "",
-      selectedPeriod: "",
+      days: ['LUN', 'MAR', 'MER', 'JEU', 'VEN', 'SAM', 'DIM'].map(e => ({label: e})),
+      periods: [{label: 'Reveil', icon: 'alarm'}, {label: 'Matin', icon: 'light_mode'}, {label: 'Midi', icon: 'restaurant_menu'}, {label: 'Aprem', icon: 'light_mode'}, {label: 'Soir', icon: 'bedtime'}],
+      selectedDay: undefined,
+      selectedPeriod: undefined,
 
       workouts: schedule
     }
@@ -107,43 +86,36 @@ export default {
 
   computed: {
     currentWorkout() {
-      return this.workouts[this.selectedDay]?.[this.selectedPeriod] ?? []
+      return this.workouts[this.selectedDay?.label]?.[this.selectedPeriod?.label] ?? []
     }
   },
 
   methods: {
     setToday() {
-      const now = new Date();
+      const now = new Date()
 
-      const dayIndex = now.getDay();
-      const dayMap = [
-        "Sunday",
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday"
-      ];
+      const dayIndex = now.getDay()
 
-      this.selectedDay = dayMap[dayIndex];
+      this.selectedDay = this.days[(dayIndex - 1)%7]
 
       const h = now.getHours()
-      let period = 'Evening'
 
-      if(h<9) period = "Morning"
-      else if(h<12) period = "WorkMorning"
-      else if(h<14) period = "Noon"
-      else if(h<18) period = "WorkAfternoon"
-      
-      this.selectedPeriod = period
+      if(h<9) this.selectedPeriod = this.periods[0]
+      else if(h<12) this.selectedPeriod = this.periods[1]
+      else if(h<14) this.selectedPeriod = this.periods[2]
+      else if(h<18) this.selectedPeriod = this.periods[3]
+      else this.selectedPeriod = this.periods[4]
     }
   },
 
   mounted() {
-    this.setToday();
+    this.setToday()
+  },
+
+  components: {
+    Selector
   }
-};
+}
 </script>
 
 <style>
@@ -151,21 +123,47 @@ export default {
   font-family: Arial, sans-serif;
   max-width: 500px;
   margin: auto;
-  padding: 20px;
-}
-
-.controls {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-bottom: 20px;
-}
+  height: 100dvh;
+  box-sizing: border-box;
+  justify-content: stretch;
 
-button {
-  padding: 8px;
-}
+  .controls {
+    --margin: 2dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4dvh;
+    justify-content: stretch;
+    width: calc(100dvw - 2 * var(--margin));
+    box-sizing: border-box;
+    padding: 4dvh 0 4dvh;
+    margin: 0 var(--margin);
+    border-bottom: 1px solid #6552d6;
+  }
 
-.workout ul {
-  padding-left: 20px;
+  .workout {
+    --gap: 5dvh;
+    padding-top: 10dvh;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 4dvh;
+    text-align: center;
+    gap: var(--gap);
+    .exercise {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      &:not(:last-child):after {
+        content: '';
+        padding-top: var(--gap);
+        border-bottom: 1px solid #6552d6;
+        width: 20dvw;
+      }
+    }
+  }
 }
 </style>

@@ -5,8 +5,8 @@ import mkcert from 'vite-plugin-mkcert'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/workout-plan/',
   plugins: [mkcert(), vue(), VitePWA({
-    base: 'workout-plan',
     registerType: 'autoUpdate',
     injectRegister: false,
 

@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite --host",
     "build": "vite build",
-    "preview": "vite preview --host"
+    "preview": "vite preview --host",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "vue": "^3.5.22"
@@ -14,6 +15,7 @@
   "devDependencies": {
     "@vite-pwa/assets-generator": "^1.0.2",
     "@vitejs/plugin-vue": "^6.0.1",
+    "gh-pages": "^6.3.0",
     "vite": "^7.1.9",
     "vite-plugin-mkcert": "^2.0.0",
     "vite-plugin-pwa": "^1.1.0",
