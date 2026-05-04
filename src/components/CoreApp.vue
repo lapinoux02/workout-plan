@@ -16,7 +16,7 @@ import Selector from './Selector.vue';
 
 const schedule = {
   LUN: {
-    Reveil: ['Pull-ups 4x60%'],
+    Reveil: ['Pull-ups 4x3'],
     Matin: ['Curls 2x12', 'Lateral raises 2x15'],
     Midi: ['Push-ups 2x15'],
     Aprem: ['Rowing 2x10'],
@@ -24,23 +24,23 @@ const schedule = {
   },
 
   MAR: {
-    Reveil: ['Pull-ups 4x60%'],
+    Reveil: ['Pull-ups 4x3'],
     Matin: ['Rowing 2x10'],
     Midi: ['Rear delt fly 2x15'],
     Aprem: ['Curls 2x12'],
-    Soir: ['Rowing heavy 4x8-12', 'Pull-ups max']
+    Soir: ['Rowing 4x8-12', 'Pull-ups max']
   },
 
   MER: {
-    Reveil: ['Light pull-ups 3x50%'],
-    Matin: ['Mobility'],
-    Midi: ['Plank'],
-    Aprem: ['Mobility'],
-    Soir: ['Recovery']
+    Reveil: ['Light pull-ups 3x2'],
+    Matin: ['Arm swing 20'],
+    Midi: ['Plank 3x60sec'],
+    Aprem: ['Rotation du tronc 20'],
+    Soir: ['Plank 3x60sec']
   },
 
   JEU: {
-    Reveil: ['Pull-ups 4x60%'],
+    Reveil: ['Pull-ups 4x3'],
     Matin: ['Curls 2x12', 'Lateral raises 2x15'],
     Midi: ['Push-ups 2x15'],
     Aprem: ['Rowing 2x10'],
@@ -48,7 +48,7 @@ const schedule = {
   },
 
   VEN: {
-    Reveil: ['Pull-ups 4x60%'],
+    Reveil: ['Pull-ups 4x3'],
     Matin: ['Rowing 2x10'],
     Midi: ['Rear delt fly 2x15'],
     Aprem: ['Curls 2x12'],
@@ -56,19 +56,19 @@ const schedule = {
   },
 
   SAM: {
-    Reveil: ['Light pull-ups'],
-    Matin: ['Light'],
-    Midi: ['Light'],
-    Aprem: ['Light'],
-    Soir: ['Optional']
+    Reveil: ['Repos'],
+    Matin: ['Repos'],
+    Midi: ['Repos'],
+    Aprem: ['Repos'],
+    Soir: ['Repos']
   },
 
   DIM: {
-    Reveil: ['Rest'],
-    Matin: ['Rest'],
-    Midi: ['Rest'],
-    Aprem: ['Rest'],
-    Soir: ['Rest']
+    Reveil: ['pull-ups 3x2'],
+    Matin: ['deadhang 30sec'],
+    Midi: ['scapular pull-ups 10'],
+    Aprem: ['deadhang 30sec'],
+    Soir: ['Optional']
   }
 }
 
