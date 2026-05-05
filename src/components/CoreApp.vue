@@ -146,7 +146,6 @@ export default {
   .workout {
     --gap: 5dvh;
     padding-top: 10dvh;
-    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
