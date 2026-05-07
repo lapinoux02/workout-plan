@@ -1,5 +1,5 @@
 <template>
-  <div class="core-app">
+  <div class="core-app" v-touch:swipe.right="previousExercise" v-touch:swipe.left="nextExercise">
     <div class="controls">
       <selector v-model="selectedDay" :options="days"></selector>
       <selector v-model="selectedPeriod" :options="periods"></selector>
@@ -34,11 +34,11 @@ const schedule = {
   },
 
   MER: {
-    Reveil: ['Light pull-ups 3x2'],
+    Reveil: ['Pull-ups 3x2'],
     Matin: ['Arm swing 20'],
-    Midi: ['Plank 3x60sec'],
+    Midi: ['Plank 3x30sec'],
     Aprem: ['Rotation du tronc 20'],
-    Soir: ['Plank 3x60sec']
+    Soir: ['Plank 3x30sec']
   },
 
   JEU: {
@@ -87,12 +87,30 @@ export default {
   },
 
   computed: {
+    periodIndex() {
+      return this.periods.indexOf(this.selectedPeriod)
+    },
+    dayIndex() {
+      return this.days.indexOf(this.selectedDay)
+    },
     currentWorkout() {
       return this.workouts[this.selectedDay?.label]?.[this.selectedPeriod?.label] ?? []
     }
   },
 
   methods: {
+    previousExercise() {
+      this.selectedPeriod = this.periods[this.periodIndex - 1] ?? this.periods.at(-1)
+      if (this.selectedPeriod === this.periods.at(-1)) {
+        this.selectedDay = this.days[this.dayIndex - 1] ?? this.days.at(-1)
+      }
+    },
+    nextExercise() {
+      this.selectedPeriod = this.periods[this.periodIndex + 1] ?? this.periods[0]
+      if (this.selectedPeriod === this.periods[0]) {
+        this.selectedDay = this.days[this.dayIndex + 1] ?? this.days[0]
+      }
+    },
     setToday() {
       const now = new Date()
 
