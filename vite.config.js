@@ -51,6 +51,9 @@ export default defineConfig({
       navigateFallback: 'index.html',
       suppressWarnings: true,
       type: 'module',
-    },
+    }
   })],
+  server: {
+    port: 5174
+  }
 })

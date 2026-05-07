@@ -8,6 +8,8 @@
     <div class="workout">
       <div v-for="(exercise, index) in currentWorkout" :key="index" class="exercise">{{ exercise }}</div>
     </div>
+
+    <div class="refresh"><span class="material-icons" @click="setToday">gps_fixed</span></div>
   </div>
 </template>
 
@@ -162,6 +164,24 @@ export default {
         border-bottom: 1px solid #6552d6;
         width: 20dvw;
       }
+    }
+  }
+
+  .refresh {
+    --size: 100px;
+    position: absolute;
+    bottom: 5dvh;
+    left: calc(50dvw - var(--size) / 2);
+    width: var(--size);
+    aspect-ratio: 1;
+    background: #6552d6;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    > span {
+      font-size: calc(var(--size) * 0.6);
+      color: white;
     }
   }
 }
