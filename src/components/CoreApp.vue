@@ -116,7 +116,7 @@ export default {
 
       const dayIndex = now.getDay()
 
-      this.selectedDay = this.days[(dayIndex - 1)%7]
+      this.selectedDay = this.days[(dayIndex + 6)%7]
 
       const h = now.getHours()
 
