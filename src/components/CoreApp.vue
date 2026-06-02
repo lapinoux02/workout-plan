@@ -18,59 +18,53 @@ import Selector from './Selector.vue';
 
 const schedule = {
   LUN: {
-    Reveil: ['Pull-ups 4x3'],
-    Matin: ['Curls 2x12', 'Lateral raises 2x15'],
-    Midi: ['Push-ups 2x15'],
-    Aprem: ['Rowing 2x10'],
-    Soir: ['Dumbbell press 4x8-12', 'Push-ups max']
+    Reveil: ["Pull-ups 4x3"],
+    Matin: ["Curls 2x12","Lateral raises 2x15","External rotations 2x15"],
+    Midi: ["Push-ups 2x15"],
+    Aprem: ["Dumbbell press 4x12","Rowing 2x10"],
+    Soir: ["Push-ups max"]
   },
-
   MAR: {
-    Reveil: ['Pull-ups 4x3'],
-    Matin: ['Rowing 2x10'],
-    Midi: ['Rear delt fly 2x15'],
-    Aprem: ['Curls 2x12'],
-    Soir: ['Rowing 4x8-12', 'Pull-ups max']
+    Reveil: ["Pull-ups 4x3"],
+    Matin: ["Rear delt fly 2x15","Hammer curls 2x12","Farmer hold 2x45sec"],
+    Midi: ["Pull-ups max"],
+    Aprem: ["Rowing 4x12","Curls 2x12","Rowing 2x10"],
+    Soir: ["Dead hang 30sec"]
   },
-
   MER: {
-    Reveil: ['Pull-ups 3x2'],
-    Matin: ['Arm swing 20'],
-    Midi: ['Plank 3x30sec'],
-    Aprem: ['Rotation du tronc 20'],
-    Soir: ['Plank 3x30sec']
+    Reveil: ["Pull-ups 3x2"],
+    Matin: ["Arm swing 20"],
+    Midi: ["Plank 3x30sec"],
+    Aprem: ["Rotation du tronc 20"],
+    Soir: ["Plank 3x30sec"]
   },
-
   JEU: {
-    Reveil: ['Pull-ups 4x3'],
-    Matin: ['Curls 2x12', 'Lateral raises 2x15'],
-    Midi: ['Push-ups 2x15'],
-    Aprem: ['Rowing 2x10'],
-    Soir: ['Dumbbell press 4x8-12', 'Push-ups max']
+    Reveil: ["Pull-ups 4x3"],
+    Matin: ["Curls 2x12","Lateral raises 2x15","External rotations 2x15"],
+    Midi: ["Push-ups 2x15"],
+    Aprem: ["Dumbbell press 4x12","Rowing 2x10"],
+    Soir: ["Push-ups max"]
   },
-
   VEN: {
-    Reveil: ['Pull-ups 4x3'],
-    Matin: ['Rowing 2x10'],
-    Midi: ['Rear delt fly 2x15'],
-    Aprem: ['Curls 2x12'],
-    Soir: ['Rowing heavy 4x8-12', 'Pull-ups max']
+    Reveil: ["Pull-ups 4x3"],
+    Matin: ["Rear delt fly 2x15","Hammer curls 2x12","Farmer hold 2x45sec"],
+    Midi: ["Pull-ups max"],
+    Aprem: ["Heavy rowing 4x12","Curls 2x12","Rowing 2x10"],
+    Soir: ["Dead hang 30sec"]
   },
-
   SAM: {
-    Reveil: ['Repos'],
-    Matin: ['Repos'],
-    Midi: ['Repos'],
-    Aprem: ['Repos'],
-    Soir: ['Repos']
+    Reveil: ["Repos"],
+    Matin: ["Repos"],
+    Midi: ["Repos"],
+    Aprem: ["Repos"],
+    Soir: ["Repos"]
   },
-
   DIM: {
-    Reveil: ['pull-ups 3x2'],
-    Matin: ['deadhang 30sec'],
-    Midi: ['scapular pull-ups 10'],
-    Aprem: ['deadhang 30sec'],
-    Soir: ['Optional']
+    Reveil: ["Pull-ups 3x2"],
+    Matin: ["Dead hang 30sec"],
+    Midi: ["Scapular pull-ups 10"],
+    Aprem: ["Dead hang 30sec"],
+    Soir: ["Dead hang 60sec"]
   }
 }
 
