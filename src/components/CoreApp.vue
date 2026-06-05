@@ -9,7 +9,10 @@
       <div v-for="(exercise, index) in currentWorkout" :key="index" class="exercise">{{ exercise }}</div>
     </div>
 
-    <div class="refresh"><span class="material-icons" @click="setToday">gps_fixed</span></div>
+    <div class="bottom-controls">
+      <div class="refresh"><span class="material-icons" @click="setToday">gps_fixed</span></div>
+      <div class="timer" @click="resetTimer"><span class="timer-item">{{ timerVal.min }}</span>:<span class="timer-item">{{ timerVal.sec }}</span>.<span class="frac timer-item">{{ timerVal.frac }}</span></div>
+    </div>
   </div>
 </template>
 
@@ -76,11 +79,21 @@ export default {
       selectedDay: undefined,
       selectedPeriod: undefined,
 
-      workouts: schedule
+      workouts: schedule,
+      startTimer: new Date().getTime(),
+      timer: new Date().getTime()
     }
   },
-
   computed: {
+    timerVal() {
+      const diff = this.timer - this.startTimer
+      const allSecs = Math.floor((diff / 1000))
+
+      const min = (''+Math.floor(allSecs / 60)).padStart(2, '0')
+      const sec = (''+allSecs % 60).padStart(2, '0')
+      const frac = (''+Math.round((diff - allSecs * 1000) / 10)).padStart(2, '0')
+      return { min, sec, frac }
+    },
     periodIndex() {
       return this.periods.indexOf(this.selectedPeriod)
     },
@@ -119,11 +132,17 @@ export default {
       else if(h<14) this.selectedPeriod = this.periods[2]
       else if(h<18) this.selectedPeriod = this.periods[3]
       else this.selectedPeriod = this.periods[4]
+    },
+    resetTimer() {
+      this.startTimer = new Date().getTime()
     }
   },
 
   mounted() {
     this.setToday()
+    this.timeoutId = setInterval(() => {
+      this.timer = new Date().getTime()
+    }, 10)
   },
 
   components: {
@@ -179,11 +198,17 @@ export default {
     }
   }
 
-  .refresh {
-    --size: 100px;
+  .bottom-controls {
     position: absolute;
     bottom: 5dvh;
-    left: calc(50dvw - var(--size) / 2);
+    left: 50dvw;
+    translate: -50% 0;
+    display: flex;
+    gap: 5dvw;
+    align-items: center;
+  }
+  .refresh {
+    --size: 90px;
     width: var(--size);
     aspect-ratio: 1;
     background: #6552d6;
@@ -194,6 +219,28 @@ export default {
     > span {
       font-size: calc(var(--size) * 0.6);
       color: white;
+    }
+  }
+
+  .timer {
+    font-size: 5dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #6552d6;
+    border-radius: 500px;
+    padding: 0 3dvh;
+    .timer-item {
+      width: 7dvh;
+      display: flex;
+      justify-content: center;
+    }
+    .frac {
+      width: 3dvh;
+      font-size: 0.5em;
+      align-self: flex-end;
+      line-height: 2.3;
+      margin-left: 0.2dvh;
     }
   }
 }
