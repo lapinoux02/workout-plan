@@ -36,10 +36,10 @@ const schedule = {
   },
   MER: {
     Reveil: ["Pull-ups 3x2"],
-    Matin: ["Arm swing 20"],
-    Midi: ["Plank 3x30sec"],
-    Aprem: ["Rotation du tronc 20"],
-    Soir: ["Plank 3x30sec"]
+    Matin: ["Suitcase hold 2x30sec"],
+    Midi: ["Active hang 3x20sec"],
+    Aprem: ["Farmer hold 2x45sec"],
+    Soir: ["Active hang 3x20sec"]
   },
   JEU: {
     Reveil: ["Pull-ups 4x3"],
