@@ -89,7 +89,7 @@ export default {
       const diff = this.timer - this.startTimer
       const allSecs = Math.floor((diff / 1000))
 
-      const min = (''+Math.floor(allSecs / 60)).padStart(2, '0')
+      const min = (''+(Math.floor(allSecs / 60)%60)).padStart(2, '0')
       const sec = (''+allSecs % 60).padStart(2, '0')
       const frac = (''+Math.round((diff - allSecs * 1000) / 10)).padStart(2, '0')
       return { min, sec, frac }
