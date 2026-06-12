@@ -12,6 +12,7 @@
     <div class="bottom-controls">
       <div class="refresh"><span class="material-icons" @click="setToday">gps_fixed</span></div>
       <div class="timer" @click="resetTimer"><span class="timer-item">{{ timerVal.min }}</span>:<span class="timer-item">{{ timerVal.sec }}</span>.<span class="frac timer-item">{{ timerVal.frac }}</span></div>
+      <div class="sound" @click="toggleSound"><span class="material-icons">{{this.soundPaused ? 'volume_off' : 'volume_up'}}</span></div>
     </div>
   </div>
 </template>
@@ -73,6 +74,8 @@ const schedule = {
 
 export default {
   data() {
+    const sound = new Audio('src/assets/music.mp3')
+    sound.loop = true
     return {
       days: ['LUN', 'MAR', 'MER', 'JEU', 'VEN', 'SAM', 'DIM'].map(e => ({label: e})),
       periods: [{label: 'Reveil', icon: 'alarm'}, {label: 'Matin', icon: 'light_mode'}, {label: 'Midi', icon: 'restaurant_menu'}, {label: 'Aprem', icon: 'light_mode'}, {label: 'Soir', icon: 'bedtime'}],
@@ -80,8 +83,12 @@ export default {
       selectedPeriod: undefined,
 
       workouts: schedule,
+
       startTimer: new Date().getTime(),
-      timer: new Date().getTime()
+      timer: new Date().getTime(),
+
+      sound,
+      soundPaused: true
     }
   },
   computed: {
@@ -135,6 +142,15 @@ export default {
     },
     resetTimer() {
       this.startTimer = new Date().getTime()
+    },
+    toggleSound() {
+      if (this.sound.paused) {
+        this.sound.play()
+        this.soundPaused = false
+      } else {
+        this.sound.pause()
+        this.soundPaused = true
+      }
     }
   },
 
@@ -206,41 +222,42 @@ export default {
     display: flex;
     gap: 5dvw;
     align-items: center;
-  }
-  .refresh {
-    --size: 90px;
-    width: var(--size);
-    aspect-ratio: 1;
-    background: #6552d6;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    > span {
-      font-size: calc(var(--size) * 0.6);
-      color: white;
-    }
-  }
-
-  .timer {
-    font-size: 5dvh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #6552d6;
-    border-radius: 500px;
-    padding: 0 3dvh;
-    .timer-item {
-      width: 7dvh;
+    
+    .refresh, .sound {
+      --size: 70px;
+      width: var(--size);
+      aspect-ratio: 1;
+      background: #6552d6;
+      border-radius: 50%;
       display: flex;
       justify-content: center;
+      align-items: center;
+      > span {
+        font-size: calc(var(--size) * 0.6);
+        color: white;
+      }
     }
-    .frac {
-      width: 3dvh;
-      font-size: 0.5em;
-      align-self: flex-end;
-      line-height: 2.3;
-      margin-left: 0.2dvh;
+
+    .timer {
+      font-size: 5dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #6552d6;
+      border-radius: 500px;
+      padding: 0 3dvh;
+      .timer-item {
+        width: 7dvh;
+        display: flex;
+        justify-content: center;
+      }
+      .frac {
+        width: 3dvh;
+        font-size: 0.5em;
+        align-self: flex-end;
+        line-height: 2.3;
+        margin-left: 0.2dvh;
+      }
     }
   }
 }
