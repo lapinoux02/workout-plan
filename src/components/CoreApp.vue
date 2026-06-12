@@ -21,35 +21,35 @@ import Selector from './Selector.vue';
 
 const schedule = {
   LUN: {
-    Reveil: ["Pull-ups 4x3"],
+    Reveil: ["Pull-ups 4x4"],
     Matin: ["Curls 2x12","Lateral raises 2x15","External rotations 2x15"],
     Midi: ["Push-ups 2x15"],
     Aprem: ["Dumbbell press 4x12","Rowing 2x10"],
     Soir: ["Push-ups max"]
   },
   MAR: {
-    Reveil: ["Pull-ups 4x3"],
+    Reveil: ["Pull-ups 4x4"],
     Matin: ["Rear delt fly 2x15","Hammer curls 2x12","Farmer hold 2x45sec"],
     Midi: ["Pull-ups max"],
     Aprem: ["Rowing 4x12","Curls 2x12","Rowing 2x10"],
     Soir: ["Dead hang 30sec"]
   },
   MER: {
-    Reveil: ["Pull-ups 3x2"],
+    Reveil: ["Pull-ups 3x3"],
     Matin: ["Suitcase hold 2x30sec"],
-    Midi: ["Active hang 3x20sec"],
+    Midi: ["Active hang 3x30sec"],
     Aprem: ["Farmer hold 2x45sec"],
-    Soir: ["Active hang 3x20sec"]
+    Soir: ["Active hang 3x30sec"]
   },
   JEU: {
-    Reveil: ["Pull-ups 4x3"],
+    Reveil: ["Pull-ups 4x4"],
     Matin: ["Curls 2x12","Lateral raises 2x15","External rotations 2x15"],
     Midi: ["Push-ups 2x15"],
     Aprem: ["Dumbbell press 4x12","Rowing 2x10"],
     Soir: ["Push-ups max"]
   },
   VEN: {
-    Reveil: ["Pull-ups 4x3"],
+    Reveil: ["Pull-ups 4x4"],
     Matin: ["Rear delt fly 2x15","Hammer curls 2x12","Farmer hold 2x45sec"],
     Midi: ["Pull-ups max"],
     Aprem: ["Heavy rowing 4x12","Curls 2x12","Rowing 2x10"],
@@ -63,7 +63,7 @@ const schedule = {
     Soir: ["Repos"]
   },
   DIM: {
-    Reveil: ["Pull-ups 3x2"],
+    Reveil: ["Pull-ups 3x3"],
     Matin: ["Dead hang 30sec"],
     Midi: ["Scapular pull-ups 10"],
     Aprem: ["Dead hang 30sec"],
