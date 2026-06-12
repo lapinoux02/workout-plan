@@ -74,7 +74,7 @@ const schedule = {
 
 export default {
   data() {
-    const sound = new Audio('src/assets/music.mp3')
+    const sound = new Audio(`${import.meta.env.BASE_URL}music.mp3`)
     sound.loop = true
     return {
       days: ['LUN', 'MAR', 'MER', 'JEU', 'VEN', 'SAM', 'DIM'].map(e => ({label: e})),
